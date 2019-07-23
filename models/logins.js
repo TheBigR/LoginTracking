@@ -11,7 +11,7 @@ const loginSchema = new Schema({
             type: 'String',
             required: true,
             trim: true,
-            unique: true
+            unique: false
         },
     password:
         {
@@ -21,21 +21,21 @@ const loginSchema = new Schema({
         }
 });
 
-loginSchema.pre('save', function (next) {
-    const login = this;
-    if(!login.isModified || !login.isNew) {
-        next();
-    } else {
-        bcrypt.hash(login.password, stage.saltingRounds, function (err, hash) {
-            if (err) {
-                console.log('error hashing password for user' , login.name);
-                next(err);
-            } else {
-                login.password = hash;
-                next();
-            }
-        });
-    }
-});
+// loginSchema.pre('save', function (next) {
+//     const login = this;
+//     if(!login.isModified || !login.isNew) {
+//         next();
+//     } else {
+//         bcrypt.hash(login.password, stage.saltingRounds, function (err, hash) {
+//             if (err) {
+//                 console.log('error hashing password for user' , login.name);
+//                 next(err);
+//             } else {
+//                 login.password = hash;
+//                 next();
+//             }
+//         });
+//     }
+// });
 
 module.exports = mongoose.model('Login', loginSchema);
