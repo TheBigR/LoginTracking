@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+// const bcrypt = require('bcryptjs');
 const path = require('path');
 
 const connUri = process.env.MONGO_LOCAL_CONN_URL;
@@ -18,7 +18,6 @@ module.exports = {
         mongoose.connect(connUri, {useNewUrlParser: true}, (err) => {
             let result = {};
             let status = 201;
-            res.header('Access-Control-Allow-Origin', ['*']);
             if (!err) {
                 const {name, password} = req.body;
                 const login = new Login({name, password});
@@ -39,12 +38,6 @@ module.exports = {
                 result.error = err;
                 res.status(status).send(result);
             }
-            // let status = 200;
-            // let result = {};
-            // result.name = req.body.name;
-            // console.log('collecting...');
-            // res.status(status).send(result.name);
-
         });
     }
 };

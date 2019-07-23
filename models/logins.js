@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const environment = process.env.NODE_ENV;
-const stage = require('../config')[environment];
+// const bcrypt = require('bcryptjs');
+// const environment = process.env.NODE_ENV;
+// const stage = require('../config')[environment];
 
 const Schema = mongoose.Schema;
 
@@ -21,6 +21,7 @@ const loginSchema = new Schema({
         }
 });
 
+// don't want to save passwords hashed in this case.
 // loginSchema.pre('save', function (next) {
 //     const login = this;
 //     if(!login.isModified || !login.isNew) {
