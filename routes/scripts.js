@@ -5,5 +5,7 @@ module.exports = (router) => {
         .get(controller.collect);
     router.route('/')
         .get(controller.init);
+    router.route('/collectorApi')
+        .post(controller.collectorApi);
 };
 
